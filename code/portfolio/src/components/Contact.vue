@@ -25,7 +25,8 @@ export default {}
 <style lang="scss" scoped>
 .contact {
   width: 100%;
-  color: #111111;
+  color: var(--default-color);
+  
   .contact_container {
     width: 1440px;
     margin: auto;

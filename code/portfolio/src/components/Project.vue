@@ -50,7 +50,8 @@ export default {
 .project {
   width: 100%;
   background: #0d0d0d;
-  color: #eeeeee;
+  color: var(--title-color);
+
   .project_container {
     width: 1440px;
     margin: auto;

@@ -36,7 +36,7 @@ export default {
   },
   data() {
     return {
-      menuList: [ 'Home', 'About', 'Skiils', 'Project', 'Contact' ]
+      menuList: [ 'Home', 'About', 'Skils', 'Project', 'Contact' ]
     }
   },
   method: {
@@ -46,10 +46,10 @@ export default {
           window.scroll({ top: 0, left: 0, behavior: 'smooth' })
           break;
         case 'About':
-          window.scroll({ top: 0, left: 0, behavior: 'smooth' })
+          window.scroll({ top: 938, left: 0, behavior: 'smooth' })
           break
-        case 'Skiils':
-          window.scroll({ top: 0, left: 0, behavior: 'smooth' })
+        case 'Skils':
+          window.scroll({ top: 1683, left: 0, behavior: 'smooth' })
           break
         case 'Project':
           window.scroll({ top: 0, left: 0, behavior: 'smooth' })
@@ -67,11 +67,12 @@ export default {
 #app {
   width: 100%;
   height: 100%;
+  font-family: 'Spoqa Han Sans Regular';
 
   .home_container {
     position: relative;
     width: 100%;
-    height: 930px;
+    height: 938px;
     background-image: url("../src/assets/img_bg.png");
     background-repeat: no-repeat;
     background-size: cover;
@@ -86,7 +87,7 @@ export default {
         height: 30px;
         background-color: transparent;
         font-size: 18px;
-        color: #eeeeee;
+        color: var(--title-color);
         &:hover {
           color: #bbbbbb;
         }
@@ -97,7 +98,7 @@ export default {
       position: absolute;
       top: 60%;
       left: 200px;
-      color: #EEEEEE;
+      color: var(--title-color);
 
       .text {
         font-size: 32px;
@@ -113,7 +114,7 @@ export default {
       position: absolute;
       left: 85%;
       top: 40%;
-      color: #EEEEEE;
+      color: var(--title-color);
       font-size: 24px;
       transform: rotate(0.25turn);
     }

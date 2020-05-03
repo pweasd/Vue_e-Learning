@@ -33,7 +33,8 @@ export default {
 .skils {
   width: 100%;
   background: #eff0f2;
-  color: #111111;
+  color: var(--default-color);
+
   .skils_container {
     width: 1440px;
     margin: auto;

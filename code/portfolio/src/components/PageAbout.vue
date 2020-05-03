@@ -22,7 +22,7 @@ export default {}
 <style lang="scss" scoped>
 .About {
   width: 100%;
-  color: #111111;
+  color: var(--default-color);
 
   .page_Container {
     width: 1440px;
