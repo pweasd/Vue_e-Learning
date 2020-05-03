@@ -1,7 +1,8 @@
 <template>
   <div class="project">
     <div class="project_container">
-      <p class="project_top">Project</p> <!-- 밑줄긋기시 css 가상요소 설명 -->
+      <p class="project_top">Project</p>
+      <!-- 밑줄긋기시 css 가상요소 설명 -->
 
       <div class="project_list">
         <div class="project_item" v-for="project in projectList" :key="project.id">
@@ -16,40 +17,40 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        projectList: [
-          {
-            image: require('./../assets/img_pj1.png'), // require 설명
-            title: 'Project 제목 1',
-            content: 'Project 세부 내용dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd',// 단어 길 경우 설명(css - word-break)
-            date: 'Web . 2019 . 12 ~ 2020 . 01',
-          },
-          {
-            image: require('./../assets/img_pj2.png'),
-            title: 'Project 제목 2',
-            content: 'Project 세부 내용',
-            date: 'Mobile . 2019 . 12 ~ 2020 . 01',
-          },
-          // 2 -> 3 개수 늘리면서 flex-wrap 설명
-          {
-            image: require('./../assets/img_pj2.png'),
-            title: 'Project 제목 3',
-            content: 'Project 세부 내용',
-            date: 'Mobile . 2019 . 12 ~ 2020 . 01',
-          }
-        ]
-      }
+export default {
+  data() {
+    return {
+      projectList: [
+        {
+          image: require('./../assets/img_pj1.png'), // require 설명
+          title: 'Project 제목 1',
+          content: 'Project 세부 내용dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd', // 단어 길 경우 설명(css - word-break)
+          date: 'Web . 2019 . 12 ~ 2020 . 01',
+        },
+        {
+          image: require('./../assets/img_pj2.png'),
+          title: 'Project 제목 2',
+          content: 'Project 세부 내용',
+          date: 'Mobile . 2019 . 12 ~ 2020 . 01',
+        },
+        // 2 -> 3 개수 늘리면서 flex-wrap 설명
+        {
+          image: require('./../assets/img_pj2.png'),
+          title: 'Project 제목 3',
+          content: 'Project 세부 내용',
+          date: 'Mobile . 2019 . 12 ~ 2020 . 01',
+        },
+      ],
     }
-  }
+  },
+}
 </script>
 
 <style lang="scss" scoped>
 .project {
   width: 100%;
-  background: #0D0D0D;
-  color: #EEEEEE;
+  background: #0d0d0d;
+  color: #eeeeee;
   .project_container {
     width: 1440px;
     margin: auto;
@@ -64,7 +65,7 @@
     }
     .project_top:after {
       content: '';
-      width: 176px;
+      width: 147px;
       position: absolute;
       left: 0;
       bottom: -11px;
@@ -74,7 +75,7 @@
     .project_list {
       display: flex;
       justify-content: space-between;
-      flex-wrap : wrap;
+      flex-wrap: wrap;
       .project_item {
         width: 688px;
         margin-top: 100px;
