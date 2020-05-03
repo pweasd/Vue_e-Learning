@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <div class="page_Container">
+  <div class="page_Container">
       <p class="page_About">About</p>
       <div class="page_Line"></div>
 
@@ -14,7 +13,6 @@
       <div class="page_Detail">
         <p>좀 더 자세하고 세부적이며 길게 늘여 쓸만한 자신의 이야기를 작성.</p>
       </div>
-    </div>
   </div>
 </template>
 
@@ -30,12 +28,14 @@ export default {}
   .page_About {
     width: 222px;
     height: 107px;
-    margin: 92px 0px 0px 240px;
+    // margin: 92px 0px 0px 240px;
+    padding: 92px 0px 0px 240px;
     text-align: left;
     font-size: 72px;
     font-style: bold;
     letter-spacing: 2.16px;
     color: #111111;
+    box-sizing: border-box;
   }
 
   .page_Line {

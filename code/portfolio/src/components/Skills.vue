@@ -59,6 +59,7 @@
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+        width: 1000px;
         .skil_item {
           margin-top: 100px;
           .skil_image {
