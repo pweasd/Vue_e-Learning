@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+
     <div class="home_container">
       <div class="home_nav">
         <button v-for="menu in menuList" :key="menu.id" @click="move(menu)">{{ menu }}</button>
@@ -13,14 +14,24 @@
 
       <span class="author">Made by Hong</span>
     </div>
+
+    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <Project></Project>
+    <Skills></Skills>
   </div>
 </template>
 
 <script>
+import HelloWorld from "./components/HelloWorld.vue";
+import Skills from './components/Skills.vue'
+import Project from "./components/Project";
 
 export default {
   name: "App",
   components: {
+    HelloWorld,
+    Skills,
+    Project
   },
   data() {
     return {
@@ -48,7 +59,7 @@ export default {
       }
     }
   }
-};
+}
 </script>
 
 <style lang="scss">
