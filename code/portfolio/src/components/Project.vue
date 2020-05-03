@@ -59,11 +59,12 @@
     .project_top {
       margin: 92px 0px 0px 0px;
       display: inline-block;
+      font-weight: bold;
       position: relative;
     }
     .project_top:after {
       content: '';
-      width: 169px;
+      width: 176px;
       position: absolute;
       left: 0;
       bottom: -11px;
