@@ -18,9 +18,7 @@
 </template>
 
 <script>
-export default {
-  imagePath: '',
-}
+export default {}
 </script>
 
 <style lang="scss" scoped>
