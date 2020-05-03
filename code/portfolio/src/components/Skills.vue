@@ -1,15 +1,15 @@
 <template>
-  <div class="skils_container">
-    <div class="skils_header">
-      <div>Skils</div>
-      <div class="line"></div>
-    </div>
-    <div class="skils_content">
-      <div v-for="skil in skils" :key="skil.id" class="content">
-        <div class="content_image">
-          <img :src="skil.image" />
+  <div class="skils">
+    <div class="skils_container">
+      <p class="skils_top">Skils</p>
+
+      <div class="skils_list">
+        <div class="skil_item" v-for="skil in skilList" :key="skil.id">
+          <div class="skil_image">
+            <img :src="skil.image" />
+          </div>
+          <p class="skil_text">{{skil.text}}</p>
         </div>
-        <div class="content_text">{{skil.text}}</div>
       </div>
     </div>
   </div>
@@ -19,10 +19,10 @@
   export default {
     data() {
       return {
-        skils: [
+        skilList: [
           { image: require('@/assets/img_html.png'), text: 'HTML' },
           { image: require('@/assets/img_css.png'), text: 'CSS' },
-          { image: require('@/assets/img_as.png'), text: 'Android Studio' },
+          { image: require('@/assets/img_as.png'), text: 'Android' },
         ],
       }
     },
@@ -30,49 +30,53 @@
 </script>
 
 <style lang="scss">
-  .skils_container {
+  .skils {
     width: 100%;
-    height: 100%;
     background: #eff0f2;
-    .skils_header {
-      width: 177px;
-      height: 107px;
+    color: #111111;
+    .skils_container {
+      width: 1440px;
+      margin: auto;
+      padding-bottom: 100px;
       font-size: 72px;
-      font-weight: bold;
-      color: #111111;
-      padding-top: 92px;
-      padding-left: 240px;
-    }
-    .line {
-      width: 147px;
-      height: 6px;
-      background: #1a1a1a;
-    }
-    .skils_content {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 83px;
-      .content {
-        margin-right: 124px;
-      }
-
-      .content_image {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 278px;
-        height: 278px;
-        background: #ffffff;
-        border-radius: 50%;
-      }
-      .content_text {
-        width: 278px;
-        height: 80px;
-        text-align: center;
-        font-size: 54px;
+      text-align: left;
+      .skils_top {
+        margin: 92px 0px 0px 0px;
+        display: inline-block;
+        position: relative;
         font-weight: bold;
-        color: #111111;
+      }
+      .skils_top:after {
+        content: '';
+        width: 169px;
+        position: absolute;
+        left: 0;
+        bottom: -11px;
+        border-width: 0 0 6px;
+        border-style: solid;
+      }
+      .skils_list {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        .skil_item {
+          margin-top: 100px;
+          .skil_image {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 278px;
+            height: 278px;
+            border-radius: 50%;
+            background: #ffffff;
+          }
+          .skil_text {
+            width: 100%;
+            height: 80px;
+            text-align: center;
+            font-weight: bold;
+          }
+        }
       }
     }
   }
