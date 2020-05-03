@@ -62,7 +62,7 @@ export default {
   }
 
   .contact_Email {
-    width: 500px;
+    width: 550px;
     height: 36px;
     margin: 14px 0px 0px 240px;
     font-size: 24px;
