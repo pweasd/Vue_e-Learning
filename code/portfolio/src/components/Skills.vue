@@ -1,14 +1,14 @@
 <template>
-  <div class="skils">
-    <div class="skils_container">
-      <p class="skils_top">Skils</p>
+  <div class="skills">
+    <div class="skills_container">
+      <p class="skills_top">Skills</p>
 
-      <div class="skils_list">
-        <div class="skil_item" v-for="skil in skilList" :key="skil.id">
-          <div class="skil_image">
-            <img :src="skil.image" />
+      <div class="skills_list">
+        <div class="skills_item" v-for="skills in skillsList" :key="skills.id">
+          <div class="skills_image">
+            <img :src="skills.image" />
           </div>
-          <p class="skil_text">{{ skil.text }}</p>
+          <p class="skills_text">{{ skills.text }}</p>
         </div>
       </div>
     </div>
@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      skilList: [
+      skillsList: [
         { image: require('@/assets/img_html.png'), text: 'HTML' },
         { image: require('@/assets/img_css.png'), text: 'CSS' },
         { image: require('@/assets/img_as.png'), text: 'Android' },
@@ -30,24 +30,24 @@ export default {
 </script>
 
 <style lang="scss">
-.skils {
+.skills {
   width: 100%;
   background: #eff0f2;
   color: var(--default-color);
 
-  .skils_container {
+  .skills_container {
     width: 1440px;
     margin: auto;
     padding-bottom: 100px;
     font-size: 72px;
     text-align: left;
-    .skils_top {
+    .skills_top {
       margin: 92px 0px 0px 0px;
       display: inline-block;
       position: relative;
       font-weight: bold;
     }
-    .skils_top:after {
+    .skills_top:after {
       content: '';
       width: 147px;
       position: absolute;
@@ -56,14 +56,15 @@ export default {
       border-width: 0 0 6px;
       border-style: solid;
     }
-    .skils_list {
+    .skills_list {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
       width: 1000px;
-      .skil_item {
+      margin-top: 90px;
+      .skill_item {
         margin-top: 100px;
-        .skil_image {
+        .skill_image {
           display: inline-flex;
           align-items: center;
           justify-content: center;
@@ -72,7 +73,7 @@ export default {
           border-radius: 50%;
           background: #ffffff;
         }
-        .skil_text {
+        .skill_text {
           width: 100%;
           height: 80px;
           text-align: center;

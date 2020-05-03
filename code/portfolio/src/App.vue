@@ -1,63 +1,52 @@
 <template>
   <div id="app">
-    <div class="home_container">
-      <div class="home_nav">
-        <button v-for="menu in menuList" :key="menu.id" @click="move(menu)">{{ menu }}</button>
-      </div>
-
-      <div class="home_title">
-        <p class="text">포트폴리오 사이트를</p>
-        <p class="text">만들었습니다.</p>
-        <p class="text_bold">Developer 홍길동 입니다.</p>
-      </div>
-
-      <span class="author">Made by Hong</span>
-    </div>
-    <PageAbout></PageAbout>
-    <Skills></Skills>
-    <Project></Project>
-    <Contact></Contact>
+    <Home ref="home" @move="move"></Home>
+    <PageAbout ref="about"></PageAbout>
+    <Skills ref="skills"></Skills>
+    <Project ref="project"></Project>
+    <Contact ref="contact"></Contact>
   </div>
 </template>
 
 <script>
+import Home from './components/Home'
 import PageAbout from './components/PageAbout'
 import Skills from './components/Skills'
-import Project from "./components/Project"
+import Project from './components/Project'
 import Contact from './components/Contact'
 
 export default {
   name: "App",
   components: {
+    Home,
     PageAbout,
     Skills,
     Project,
     Contact
   },
-  data() {
-    return {
-      menuList: [ 'Home', 'About', 'Skils', 'Project', 'Contact' ]
-    }
-  },
-  method: {
+  methods: {
     move(menu) {
+      let pos;
+
       switch (menu) {
         case 'Home':
-          window.scroll({ top: 0, left: 0, behavior: 'smooth' })
+          pos = 0;
           break;
         case 'About':
-          window.scroll({ top: 938, left: 0, behavior: 'smooth' })
+          pos = this.$refs.home.$el.clientHeight
           break
-        case 'Skils':
-          window.scroll({ top: 1683, left: 0, behavior: 'smooth' })
+        case 'Skills':
+          pos = this.$refs.home.$el.clientHeight + this.$refs.about.$el.clientHeight
           break
         case 'Project':
-          window.scroll({ top: 0, left: 0, behavior: 'smooth' })
+          pos = this.$refs.home.$el.clientHeight + this.$refs.about.$el.clientHeight + this.$refs.skills.$el.clientHeight
           break
         case 'Contact':
-          window.scroll({ top: 0, left: 0, behavior: 'smooth' })
+          pos = this.$refs.home.$el.clientHeight + this.$refs.about.$el.clientHeight + this.$refs.skills.$el.clientHeight + this.$refs.project.$el.clientHeight
           break
       }
+
+      window.scroll({ top: pos, left: 0, behavior: 'smooth' })
     }
   }
 }
@@ -68,56 +57,5 @@ export default {
   width: 100%;
   height: 100%;
   font-family: 'Spoqa Han Sans Regular';
-
-  .home_container {
-    position: relative;
-    width: 100%;
-    height: 938px;
-    background-image: url("../src/assets/img_bg.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-
-    .home_nav {
-      display: flex;
-      position: absolute;
-      top: 30px;
-      left: 70%;
-      button {
-        width: 80px;
-        height: 30px;
-        background-color: transparent;
-        font-size: 18px;
-        color: var(--title-color);
-        &:hover {
-          color: #bbbbbb;
-        }
-      }
-    }
-
-    .home_title {
-      position: absolute;
-      top: 60%;
-      left: 200px;
-      color: var(--title-color);
-
-      .text {
-        font-size: 32px;
-      }
-
-      .text_bold {
-        font-size: 70px;
-        font-weight: 500;
-      }
-    }
-
-    .author {
-      position: absolute;
-      left: 85%;
-      top: 40%;
-      color: var(--title-color);
-      font-size: 24px;
-      transform: rotate(0.25turn);
-    }
-  }
 }
 </style>
