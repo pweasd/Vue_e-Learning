@@ -1,37 +1,30 @@
 <template>
-  <div class="hotel_confirm">
-    <div class="hotel_confirm_header">
-      <p class="text">예약 확인</p>
+  <div class="hotel_signup">
+    <div class="hotel_signup_header">
+      <p class="text">호텔 회원가입</p>
       <p class="close" @click="close">X</p>
     </div>
 
-    <p class="confirm_text">
-      해당 양식을 작성하시면 예약이 검색되며
-      <br />예약 내용을 확인하거나 수정 또는 취소하실 수 있습니다.
-    </p>
+    <div class="email">
+      <p class="text">이메일</p>
 
-    <div class="hotel_room">
-      <p class="text">객실 선택</p>
-
-      <el-select v-model="room" placeholder="객실 선택" class="select">
-        <el-option v-for="item in optionList" :key="item.value" :label="item.label" :value="item.value"></el-option>
-      </el-select>
+      <input type="text" class="input" v-model="email" />
     </div>
 
-    <div class="reservation_number">
-      <p class="text">온라인 예약번호</p>
+    <div class="password">
+      <p class="text">비밀번호</p>
 
-      <input type="number" class="input" />
+      <input type="text" class="input" v-model="password" />
     </div>
 
-    <div class="reservation_name">
-      <p class="text">성명</p>
+    <div class="repassword">
+      <p class="text">비밀번호 확인</p>
 
-      <input type="text" class="input" />
+      <input type="text" class="input" v-model="rePassword" />
     </div>
 
-    <div class="reservation_retrieve">
-      <div class="retrieve" @click="retrieve">조회</div>
+    <div class="signUp_btn">
+      <div class="signUp" @click="signUp">회원가입</div>
     </div>
   </div>
 </template>
@@ -40,43 +33,31 @@
   export default {
     data() {
       return {
-        room: null,
-        optionList: [
-          {
-            value: 'double101',
-            label: '디럭스 더블 101호',
-          },
-          {
-            value: 'double102',
-            label: '디럭스 더블 102호',
-          },
-          {
-            value: 'twin103',
-            label: '디럭스 트윈 103호',
-          },
-        ],
+        email: '',
+        password: '',
+        rePassword: '',
       }
     },
     methods: {
       close() {
         console.log('닫기')
       },
-      retrieve() {
-        console.log('조회하기')
+      signUp() {
+        console.log('회원가입')
       },
     },
   }
 </script>
 
 <style lang="scss" scoped>
-  .hotel_confirm {
+  .hotel_signup {
     width: 540px;
     height: 620px;
     box-sizing: border-box;
     border: 1px solid red;
     padding-left: 91px;
     padding-right: 44px;
-    .hotel_confirm_header {
+    .hotel_signup_header {
       display: flex;
       align-items: center;
       padding-top: 36px;
@@ -93,25 +74,24 @@
         cursor: pointer;
       }
     }
-    .confirm_text {
-      font-size: 12px;
-      color: #727272;
-      margin-top: 8px;
-      margin-bottom: 34px;
-    }
 
-    .hotel_room {
+    .email {
       font-size: 14px;
       color: #727272;
+      margin-top: 40px;
       .text {
         margin-bottom: 10px;
       }
-      .select {
+      .input {
         width: 350px;
+        height: 46px;
+        box-sizing: border-box;
+        padding-left: 5px;
+        font-size: 15px;
       }
     }
 
-    .reservation_number {
+    .password {
       font-size: 14px;
       color: #727272;
       margin-top: 24px;
@@ -120,14 +100,14 @@
       }
       .input {
         width: 350px;
-        height: 40px;
+        height: 46px;
         box-sizing: border-box;
         padding-left: 5px;
         font-size: 15px;
       }
     }
 
-    .reservation_name {
+    .repassword {
       font-size: 14px;
       color: #727272;
       margin-top: 24px;
@@ -136,18 +116,18 @@
       }
       .input {
         width: 350px;
-        height: 40px;
+        height: 46px;
         box-sizing: border-box;
         padding-left: 5px;
         font-size: 15px;
       }
     }
 
-    .reservation_retrieve {
+    .signUp_btn {
       width: 100%;
       text-align: center;
       margin-top: 69px;
-      .retrieve {
+      .signUp {
         display: flex;
         align-items: center;
         justify-content: center;
