@@ -5,7 +5,7 @@
 
       <div class="app_menu">
         <button>예약 확인</button>
-        <router-link to="/about">오시는 길</router-link>
+        <router-link to="/location">오시는 길</router-link>
       </div>
     </div>
 
@@ -25,17 +25,13 @@
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
 }
 
 .app_top {
   width: 100%;
   height: 160px;
   padding-top: 18px;
+  text-align: center;
   img {
     cursor: pointer;
   }

@@ -8,12 +8,8 @@
       <div class="home_room">
         <p>객실선택</p>
         
-        <el-select v-model="room" placeholder="객실을 선택해주세요">
-          <el-option
-            v-for="option in optionList"
-            :key="option.value"
-            :label="option.label"
-            :value="option.value">
+        <el-select class="home_room_select" v-model="room" placeholder="객실을 선택해주세요">
+          <el-option v-for="option in optionList" :key="option.value" :label="option.label" :value="option.value">
             <div class="home_room_option">
               <img :src="option.image">
               <span>{{ option.label }}</span>
@@ -23,16 +19,23 @@
       </div>
 
       <div class="home_date">
-        체크인
-        체크아웃
+        <div class="home_date_title">
+          <span>체크인</span>
+          <span>체크아웃</span>
+        </div>
+
         <el-date-picker
-          v-model="date"
-          type="daterange"
-          range-separator="~"
-          start-placeholder="Start date"
-          end-placeholder="End date">
+         class="home_date_picker" 
+         :editable="false"
+         v-model="date" 
+         type="daterange" 
+         range-separator="~" 
+         format="yyyy-MM-dd"
+         start-placeholder="Start date" 
+         end-placeholder="End date">
         </el-date-picker>
       </div>
+
       <div class="home_person">
         <div>
           <p>성인</p>
@@ -42,6 +45,7 @@
             <button class="home_plus" @click="adultPlus"></button>
           </div>
         </div>
+
         <div>
           <p>어린이</p>
           <div class="home_controller">
@@ -51,6 +55,7 @@
           </div>
         </div>
       </div>
+
       <div class="home_button">
         <button @click="reservationClick">예약하기</button>
       </div>
@@ -90,6 +95,7 @@
         this.adult++
       },
       adultMinus() {
+        // 인원수 음수 불가
         if (this.adult === 0) {
           return
         }
@@ -100,6 +106,7 @@
         this.children++
       },
       childrenMinus() {
+        // 인원수 음수 불가
         if (this.children === 0) {
           return
         }
@@ -107,8 +114,40 @@
         this.children--
       },
       reservationClick() {
-        console.log('object');
+        if (this.room === null) {
+          alert('방을 선택해주세요')
+          return
+        }
+
+        if (this.date.length === 0) { // date range picker는 array로 값을 돌려줌
+          alert('날짜를 선택해주세요')
+          return
+        }
+
+        if (this.adult === 0 && this.children === 0) {
+          alert('인원수를 입력해주세요')
+          return
+        }
+
+        // TODO: 예약창
+        let startDate = this.dateFormatChange(this.date[0])
+        let endDate = this.dateFormatChange(this.date[1])
       },
+      dateFormatChange(date) {
+        let year = date.getFullYear()
+        let month = date.getMonth() + 1
+        let day = date.getDate()
+
+        if (month < 10) {
+          month = "0" + month
+        }
+
+        if (day < 10) {
+          day = "0" + day
+        }
+
+        return year + '-' + month + '-' + day
+      }
     }
   }
 </script>
@@ -136,26 +175,42 @@
     background: #ffffff;
     color: #727272;
     font-size: 14px;
+    text-align: center;
 
     display: flex;
     .home_room {
       width: 394px;
+      padding-top: 34px;
+      .home_room_select {
+        width: 350px;
+        margin-top: 16px;
+      }
     }
     .home_date {
       width: 409px;
+      padding-top: 34px;
       border-left: 1px solid #D3D3D3;
       border-right: 1px solid #D3D3D3;
       box-sizing: border-box;
+      .home_date_title {
+        padding: 0px 102px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .home_date_picker {
+        margin-top: 16px;
+      }
     }
     .home_person {
       width: 235px;
-      padding: 0px 20px;
+      padding: 34px 20px 0px 20px;
       border-right: 1px solid #D3D3D3;
       box-sizing: border-box;
       display: flex;
       justify-content: space-between;
       .home_controller {
         width: 90px;
+        margin-top: 22px;
         display: flex;
         align-items: center;
         justify-content: space-between;
