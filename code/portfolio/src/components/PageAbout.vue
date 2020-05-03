@@ -1,18 +1,18 @@
 <template>
   <div class="page_Container">
-      <p class="page_About">About</p>
-      <div class="page_Line"></div>
+    <p class="page_About">About</p>
+    <div class="page_Line"></div>
 
-      <div class="page_Purpose">
-        <p>
-          어필하고 싶은 자신의 장점과<br />
-          앞으로 해내고 싶은 목표에 대해 작성.
-        </p>
-      </div>
+    <div class="page_Purpose">
+      <p>
+        어필하고 싶은 자신의 장점과<br />
+        앞으로 해내고 싶은 목표에 대해 작성.
+      </p>
+    </div>
 
-      <div class="page_Detail">
-        <p>좀 더 자세하고 세부적이며 길게 늘여 쓸만한 자신의 이야기를 작성.</p>
-      </div>
+    <div class="page_Detail">
+      <p>좀 더 자세하고 세부적이며 길게 늘여 쓸만한 자신의 이야기를 작성.</p>
+    </div>
   </div>
 </template>
 
@@ -23,7 +23,7 @@ export default {}
 <style lang="scss" scoped>
 .page_Container {
   width: 100%;
-  height: 100%;
+  height: 625px;
 
   .page_About {
     width: 222px;
@@ -39,7 +39,7 @@ export default {}
   }
 
   .page_Line {
-    margin: 6px 0px 0px 240px;
+    margin: 113px 0px 0px 240px;
     width: 147px;
     height: 6px;
     background: #1a1a1a 0% 0% no-repeat padding-box;
@@ -56,7 +56,7 @@ export default {}
 
   .page_Detail {
     margin: 43px 0px 0px 240px;
-    width: 720px;
+    width: 750px;
     height: 36px;
     font-size: 24px;
     text-align: left;

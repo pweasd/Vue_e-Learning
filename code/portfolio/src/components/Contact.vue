@@ -26,7 +26,7 @@ export default {
 <style lang="scss" scoped>
 .contact_container {
   width: 100%;
-  height: 100%;
+  height: 571px;
 
   .contact_Title {
     margin: 92px 0px 0px 240px;
