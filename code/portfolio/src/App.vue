@@ -18,6 +18,7 @@
     <HelloWorld msg="Welcome to Your Vue.js App" />
     <Project></Project>
     <Skills></Skills>
+    <Contact></Contact>
   </div>
 </template>
 
@@ -25,13 +26,15 @@
 import HelloWorld from "./components/HelloWorld.vue";
 import Skills from './components/Skills.vue'
 import Project from "./components/Project";
+import Contact from './components/Contact.vue'
 
 export default {
   name: "App",
   components: {
     HelloWorld,
     Skills,
-    Project
+    Project,
+    Contact
   },
   data() {
     return {
