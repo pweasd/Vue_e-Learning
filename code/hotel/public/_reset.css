@@ -83,7 +83,7 @@ video {
   padding: 0;
   border: 0;
   /* font-size: 100%; */
-  // font: inherit;
+  /* font: inherit; */
   vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -144,9 +144,9 @@ button:focus {
 
 /* input 기본 스타일 초기화 */
 input {
-	// -webkit-appearance: none;
-	// -moz-appearance: none;
-	// appearance: none;
+	/* -webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none; */
   margin: 0;
   outline: none;
 }
