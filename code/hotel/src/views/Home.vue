@@ -93,6 +93,7 @@
         roomImage: '',
         roomDescription: '',
         reservationNumber: '',
+        roomName: '',
 
         reservationComplete: false,
         reservationModal: false,
@@ -143,7 +144,7 @@
         this.$ls.set('reservationList', JSON.stringify(list))
 
         this.reservationComplete = false
-        this.$router.go(0);
+        this.$router.go(0)
       },
       // 호텔예약완료닫기
       close() {
@@ -160,7 +161,7 @@
 
         let info = {
           email: this.token,
-          room: this.room,
+          room: this.roomName,
           roomImage: this.roomImage,
           startDate: this.startDate,
           endDate: this.endDate,
@@ -170,6 +171,7 @@
           name: name,
           phone: phone,
           reservationNumber: this.reservationNumber,
+          roomDescription: this.roomDescription,
         }
 
         this.reservationInfo = info
@@ -211,7 +213,7 @@
 
         let info = {
           email: this.token,
-          room: this.room,
+          room: this.roomName,
           roomImage: this.roomImage,
           startDate: this.startDate,
           endDate: this.endDate,
@@ -241,17 +243,17 @@
       },
       roomCheck() {
         if (this.room === 'double101') {
-          this.room = '디럭스 더블 101호'
+          this.roomName = '디럭스 더블 101호'
           this.price = '250,000'
           this.roomImage = require('@/assets/img_hotelroom_mini.png')
           this.roomDescription = '전망 시티뷰 | 객실 면적 40~46 ㎡'
         } else if (this.room === 'double102') {
-          this.room = '디럭스 더블 102호'
+          this.roomName = '디럭스 더블 102호'
           this.price = '300,000'
           this.roomImage = require('@/assets/img_hotelroom_mini2.png')
           this.roomDescription = '오션뷰 | 객실 면적 60~66 ㎡'
         } else {
-          this.room = '디럭스 트윈 103호'
+          this.roomName = '디럭스 트윈 103호'
           this.price = '400,000'
           this.roomImage = require('@/assets/img_hotelroom_mini2.png')
           this.roomDescription = '오션뷰 | 객실 면적 70~80 ㎡'

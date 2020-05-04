@@ -44,20 +44,25 @@
         let data = this.$ls.get('reservationList')
         let list = JSON.parse(data)
 
-        if (list.length === 0) {
+        if (list === null || list.length === 0) {
           alert('예약정보가 없습니다')
           return
         }
 
-        let exists = list.filter(info => info.reservationNumber == this.reservationNumber)
+        let exists = list.filter(
+          info =>
+            info.reservationNumber == this.reservationNumber &&
+            info.name == this.name
+        )
 
         if (exists.length === 0) {
           alert('예약정보가 없습니다')
           return
         }
 
-        this.$store.commit('setShowReservationRoom', exists)
-        this.$emit('hotelConfirm', this.reservationNumber, this.name)
+        this.$store.commit('setShowReservationRoom', exists[0])
+
+        this.$emit('hotelConfirm')
       },
     },
   }

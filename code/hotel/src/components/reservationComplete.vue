@@ -13,12 +13,12 @@
       <div class="content">
         <img class="room-image" src="../assets/img_hotelroom.png" />
         <div class="room-content">
-          <p class="room-name">{{this.reservationInfo.room}}</p>
+          <p class="room-name">{{reservationInfo.room}}</p>
         </div>
         <div class="room-price">
           <div class="text">총 예약금액</div>
           <span class="price">KRW</span>
-          {{this.reservationInfo.price}}
+          {{reservationInfo.price}}
         </div>
       </div>
     </div>
@@ -27,7 +27,7 @@
       <div class="row1">
         <div class="date">
           <p class="text">숙박 날짜</p>
-          <p>{{this.reservationInfo.startDate}} ~ {{this.reservationInfo.endDate}}</p>
+          <p>{{reservationInfo.startDate}} ~ {{reservationInfo.endDate}}</p>
         </div>
         <div class="number">
           <p class="text">온라인 예약번호(예약확인시 필요하므로 반드시 알아두세요)</p>
@@ -37,11 +37,11 @@
       <div class="row2">
         <div class="name">
           <p class="text">예약자 (예약확인시 필요하므로 반드시 알아두세요)</p>
-          <p>{{this.reservationInfo.name}}</p>
+          <p>{{reservationInfo.name}}</p>
         </div>
         <div class="phone">
           <p class="text">예약자 연락처</p>
-          <p>{{this.reservationInfo.phone}}</p>
+          <p>{{reservationInfo.phone}}</p>
         </div>
       </div>
     </div>

@@ -81,8 +81,8 @@
       reservationClick() {
         this.hotelConfirmShow = true
       },
-      hotelConfirm(room, reservationNumber, name) {
-        console.log('확인', room, reservationNumber, name)
+      hotelConfirm() {
+        this.reservationInfo = this.$store.state.showReservationRoom
         this.hotelConfirmShow = false
         this.reservationConfirmShow = true
       },
