@@ -11,14 +11,15 @@
       <div class="line"></div>
 
       <div class="content">
-        <img class="room-image" src="../assets/img_hotelroom.png" />
+        <img class="room-image" :src="roomInfo.roomImage" />
         <div class="room-content">
-          <p class="room-size">MAIN ROOM | 표준형</p>
-          <p class="room-name">디럭스 더블 101 호</p>
-          <p class="room-descrition">전망 시티뷰 | 객실 면적 40~46 ㎡</p>
+          <!-- <p class="room-size">MAIN ROOM | 표준형</p> -->
+          <p class="room-name">{{roomInfo.room}}</p>
+          <p class="room-descrition">{{roomInfo.roomDescription}}</p>
         </div>
         <div class="room-price">
-          <span class="price">KRW</span> 250,000~
+          <span class="price">KRW</span>
+          {{roomInfo.price}}
         </div>
       </div>
 
@@ -44,6 +45,9 @@
 
 <script>
   export default {
+    props: {
+      roomInfo: Object,
+    },
     data() {
       return {
         name: null,

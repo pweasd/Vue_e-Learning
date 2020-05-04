@@ -31,7 +31,7 @@
         </div>
         <div class="number">
           <p class="text">온라인 예약번호(예약확인시 필요하므로 반드시 알아두세요)</p>
-          <p>12325678</p>
+          <p>{{reservationInfo.reservationNumber}}</p>
         </div>
       </div>
       <div class="row2">
@@ -62,10 +62,10 @@
     },
     methods: {
       close() {
-        console.log('닫기')
+        this.$emit('close')
       },
       confirm() {
-        console.log('입력완료')
+        this.$emit('complete')
       },
     },
     created() {},

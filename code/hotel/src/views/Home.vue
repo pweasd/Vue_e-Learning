@@ -51,8 +51,8 @@
         <button @click="reservationClick">예약하기</button>
       </div>
     </div>
-    <reservation v-if="reservationModal" @reservationClose="reservationClose" @reservationOk="reservationOk"></reservation>
-    <reservationComplete v-if="reservationComplete" :reservationInfo="reservationInfo"></reservationComplete>
+    <reservation v-if="reservationModal" :roomInfo="roomInfo" @reservationClose="reservationClose" @reservationOk="reservationOk"></reservation>
+    <reservationComplete v-if="reservationComplete" :reservationInfo="reservationInfo" @complete="complete" @close="close"></reservationComplete>
   </div>
 </template>
 
@@ -90,9 +90,14 @@
         startDate: '',
         endDate: '',
         price: '',
+        roomImage: '',
+        roomDescription: '',
+        reservationNumber: '',
 
         reservationComplete: false,
         reservationModal: false,
+
+        roomInfo: null,
         reservationInfo: null,
       }
     },
@@ -119,21 +124,26 @@
 
         this.children--
       },
+      // 호텔예약완료
+      complete() {
+        this.reservationComplete = false
+      },
+      // 호텔예약완료닫기
+      close() {
+        this.reservationInfo = null
+        this.reservationComplete = false
+      },
       // 호텔예약
       reservationOk(name, phone) {
-        if (this.room === 'double101') {
-          this.room = '디럭스 더블 101호'
-          this.price = '250,000'
-        } else if (this.room === 'double102') {
-          this.room = '디럭스 더블 102호'
-          this.price = '300,000'
-        } else {
-          this.room = '디럭스 트윈 103호'
-          this.price = '400,000'
-        }
+        // 객실정보
+        this.roomCheck()
+
+        // 예약번호
+        this.reservationNumber = this.reservationNum()
 
         let info = {
           room: this.room,
+          roomImage: this.roomImage,
           startDate: this.startDate,
           endDate: this.endDate,
           adult: this.adult,
@@ -141,6 +151,7 @@
           price: this.price,
           name: name,
           phone: phone,
+          reservationNumber: this.reservationNumber,
         }
 
         this.reservationInfo = info
@@ -149,7 +160,7 @@
       },
       // 호텔예약닫기
       reservationClose() {
-        this.reservationInfo = null
+        this.roomInfo = null
         this.reservationModal = false
       },
       reservationClick() {
@@ -172,6 +183,22 @@
         // TODO: 예약창
         this.startDate = this.dateFormatChange(this.date[0])
         this.endDate = this.dateFormatChange(this.date[1])
+
+        // 객실정보
+        this.roomCheck()
+
+        let info = {
+          room: this.room,
+          roomImage: this.roomImage,
+          startDate: this.startDate,
+          endDate: this.endDate,
+          adult: this.adult,
+          children: this.children,
+          price: this.price,
+          roomDescription: this.roomDescription,
+        }
+
+        this.roomInfo = info
         this.reservationModal = true
       },
       dateFormatChange(date) {
@@ -188,6 +215,32 @@
         }
 
         return year + '-' + month + '-' + day
+      },
+      roomCheck() {
+        if (this.room === 'double101') {
+          this.room = '디럭스 더블 101호'
+          this.price = '250,000'
+          this.roomImage = require('@/assets/img_hotelroom_mini.png')
+          this.roomDescription = '전망 시티뷰 | 객실 면적 40~46 ㎡'
+        } else if (this.room === 'double102') {
+          this.room = '디럭스 더블 102호'
+          this.price = '300,000'
+          this.roomImage = require('@/assets/img_hotelroom_mini2.png')
+          this.roomDescription = '오션뷰 | 객실 면적 60~66 ㎡'
+        } else {
+          this.room = '디럭스 트윈 103호'
+          this.price = '400,000'
+          this.roomImage = require('@/assets/img_hotelroom_mini2.png')
+          this.roomDescription = '오션뷰 | 객실 면적 70~80 ㎡'
+        }
+      },
+      reservationNum() {
+        let result = Math.floor(Math.random() * 1000000) + 100000
+        if (result > 1000000) {
+          result = result - 100000
+        }
+
+        return result
       },
     },
   }
