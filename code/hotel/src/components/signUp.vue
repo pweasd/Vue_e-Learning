@@ -63,7 +63,26 @@
           return
         }
 
-        // TODO: 회원가입 처리 필요
+        let data = this.$ls.get('customerList')
+        let customerList = JSON.parse(data)
+
+        if (customerList !== null) {
+          let exists = customerList.filter(customer => customer.email === this.email)
+
+          if (exists.length > 0) {
+            alert('이미 가입된 이메일입니다')
+            return
+          }
+        } else {
+          customerList = []
+        }
+
+        customerList.push({
+          email: this.email,
+          password: this.password
+        })
+
+        this.$ls.set('customerList', JSON.stringify(customerList))
 
         // 회원가입 성공시 창닫기
         this.$emit('close')

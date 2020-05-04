@@ -62,7 +62,27 @@
           return
         }
 
+        let data = this.$ls.get('customerList')
+
+        if (data === null) {
+          alert('가입되지 않은 회원입니다')
+          return
+        }
+
+        let customerList = JSON.parse(data)
+        let check = customerList.filter(customer => customer.email === this.email)
+
+        if (check.length !== 1) {
+          alert('가입되지 않은 회원입니다')
+          return
+        }
+
         // 로그인
+        if (check[0].password !== this.password) {
+          alert('비밀번호 오류입니다.')
+          return
+        }
+
         if (this.checked) {
           // 사용자 정보 저장 만료일은 500일
           this.$cookie.set('userInfo', this.email, {
