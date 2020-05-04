@@ -11,9 +11,14 @@ Vue.use(VueLocalStorage, {
 export default new Vuex.Store({
   state: {
     customerList: [],
-    reservationList: []
+    reservationList: [],
+    showReservationRoom: {}
   },
-  mutations: {},
+  mutations: {
+    setShowReservationRoom(state, val) {
+      state.showReservationRoom = val
+    }
+  },
   actions: {},
   modules: {} 
 });

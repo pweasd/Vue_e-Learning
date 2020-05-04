@@ -10,14 +10,6 @@
       <br />예약 내용을 확인하거나 수정 또는 취소하실 수 있습니다.
     </p>
 
-    <div class="hotel_room">
-      <p class="text">객실 선택</p>
-
-      <el-select v-model="room" placeholder="객실 선택" class="select">
-        <el-option v-for="item in optionList" :key="item.value" :label="item.label" :value="item.value"></el-option>
-      </el-select>
-    </div>
-
     <div class="reservation_number">
       <p class="text">온라인 예약번호</p>
 
@@ -40,24 +32,8 @@
   export default {
     data() {
       return {
-        room: null,
         reservationNumber: '',
         name: '',
-
-        optionList: [
-          {
-            value: 'double101',
-            label: '디럭스 더블 101호',
-          },
-          {
-            value: 'double102',
-            label: '디럭스 더블 102호',
-          },
-          {
-            value: 'twin103',
-            label: '디럭스 트윈 103호',
-          },
-        ],
       }
     },
     methods: {
@@ -65,7 +41,23 @@
         this.$emit('hotelComfirmClose')
       },
       retrieve() {
-        this.$emit('hotelConfirm', this.room, this.reservationNumber, this.name)
+        let data = this.$ls.get('reservationList')
+        let list = JSON.parse(data)
+
+        if (list.length === 0) {
+          alert('예약정보가 없습니다')
+          return
+        }
+
+        let exists = list.filter(info => info.reservationNumber == this.reservationNumber)
+
+        if (exists.length === 0) {
+          alert('예약정보가 없습니다')
+          return
+        }
+
+        this.$store.commit('setShowReservationRoom', exists)
+        this.$emit('hotelConfirm', this.reservationNumber, this.name)
       },
     },
   }
