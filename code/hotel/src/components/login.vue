@@ -11,12 +11,12 @@
 
         <div class="email">
           <p class="text">이메일</p>
-          <input type="text" class="input" />
+          <input type="text" class="input" v-model="email" />
         </div>
 
         <div class="password">
           <p class="text">패스워드</p>
-          <input type="password" class="input" />
+          <input type="password" class="input" v-model="password" />
         </div>
 
         <div class="save">
@@ -45,14 +45,37 @@
   export default {
     data() {
       return {
+        email: '',
+        password: '',
         checked: false,
       }
     },
     methods: {
       login() {
-        // 로그인 처리 필요
+        if (this.email.trim() === '') {
+          alert('이메일을 입력해주세요')
+          return
+        }
+
+        if (this.password.trim() === '') {
+          alert('비밀번호를 입력해주세요')
+          return
+        }
+
+        // 로그인
+        if (this.checked) {
+          // 사용자 정보 저장 만료일은 500일
+          this.$cookie.set('userInfo', this.email, {
+            expires_day: 500,
+            today: new Date(),
+          })
+        } else {
+          this.$cookie.set('userInfo', this.email)
+        }
+
         // 로그인 성공시 창닫기
         this.$emit('close')
+        this.$router.go(0);
       },
       signUp() {
         this.$emit('signUp')

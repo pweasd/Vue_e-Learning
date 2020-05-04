@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <div class="app_top">
-      <div class="app_customer">
+      <div class="app_customer" v-if="token">
+        <span @click="logoutClick">로그아웃</span>
+      </div>
+      <div class="app_customer" v-else>
         <span @click="loginClick">로그인</span>
         |
         <span @click="signUpOpen">회원가입</span>
@@ -37,7 +40,16 @@
         signUpShow: false,
       }
     },
+    computed: {
+      token() {
+        return this.$cookie.get('userInfo')
+      },
+    },
     methods: {
+      logoutClick() {
+        this.$cookie.del('userInfo')
+        this.$router.go(0);
+      },
       loginClick() {
         this.loginShow = true
       },
