@@ -102,6 +102,7 @@
 <style lang="scss">
   #app {
     position: relative;
+    font-family: 'Spoqa Han Sans Regular';
   }
 
   .app_top {
