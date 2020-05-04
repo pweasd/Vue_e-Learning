@@ -32,7 +32,7 @@
       </div>
       <div class="contact_input">
         <p class="contact">연락처</p>
-        <input class="input" type="number" v-model="phone" />
+        <input class="input" type="text" v-model="phone" />
       </div>
     </div>
 
@@ -46,16 +46,25 @@
   export default {
     data() {
       return {
-        name: '',
-        phone: '',
+        name: null,
+        phone: null,
       }
     },
     methods: {
       close() {
-        console.log('닫기')
+        this.$emit('reservationClose')
       },
       confirm() {
-        console.log('입력완료')
+        if (this.name === null) {
+          alert('이름을 입력해주세요.')
+          return
+        }
+
+        if (this.phone === null) {
+          alert('연락처를 입력해주세요.')
+          return
+        }
+        this.$emit('reservationOk', this.name, this.phone)
       },
     },
   }
@@ -63,12 +72,15 @@
 
 <style lang="scss" scoped>
   .reservation {
+    position: fixed;
+    top: 230px;
+    left: 473px;
     width: 974px;
     height: 620px;
     background: #ffffff 0% 0% no-repeat padding-box;
     padding-left: 50px;
     padding-right: 44px;
-    border: 1px solid red;
+    border-radius: 8px;
     .reservation_header {
       display: flex;
       align-items: center;

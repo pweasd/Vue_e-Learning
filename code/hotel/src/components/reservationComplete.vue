@@ -13,11 +13,12 @@
       <div class="content">
         <img class="room-image" src="../assets/img_hotelroom.png" />
         <div class="room-content">
-          <p class="room-name">디럭스 더블 101A호</p>
+          <p class="room-name">{{this.reservationInfo.room}}</p>
         </div>
         <div class="room-price">
           <div class="text">총 예약금액</div>
-          <span class="price">KRW</span> 250,000~
+          <span class="price">KRW</span>
+          {{this.reservationInfo.price}}
         </div>
       </div>
     </div>
@@ -26,7 +27,7 @@
       <div class="row1">
         <div class="date">
           <p class="text">숙박 날짜</p>
-          <p>2020-05-01 ~ 2020-05-02</p>
+          <p>{{this.reservationInfo.startDate}} ~ {{this.reservationInfo.endDate}}</p>
         </div>
         <div class="number">
           <p class="text">온라인 예약번호(예약확인시 필요하므로 반드시 알아두세요)</p>
@@ -36,11 +37,11 @@
       <div class="row2">
         <div class="name">
           <p class="text">예약자 (예약확인시 필요하므로 반드시 알아두세요)</p>
-          <p>박상현</p>
+          <p>{{this.reservationInfo.name}}</p>
         </div>
         <div class="phone">
           <p class="text">예약자 연락처</p>
-          <p>010-1234-1234</p>
+          <p>{{this.reservationInfo.phone}}</p>
         </div>
       </div>
     </div>
@@ -53,6 +54,9 @@
 
 <script>
   export default {
+    props: {
+      reservationInfo: Object,
+    },
     data() {
       return {}
     },
@@ -64,15 +68,18 @@
         console.log('입력완료')
       },
     },
+    created() {},
   }
 </script>
 
 <style lang="scss" scoped>
   .reservation_complete {
+    position: fixed;
+    top: 230px;
+    left: 473px;
     width: 974px;
     height: 620px;
     background: #ffffff 0% 0% no-repeat padding-box;
-    border: 1px solid red;
     padding-left: 50px;
     padding-right: 36px;
     box-sizing: border-box;

@@ -1,17 +1,17 @@
 <template>
   <div class="home">
     <div class="home_background">
-      <img src="./../assets/pool-3204359.png">
+      <img src="./../assets/pool-3204359.png" />
     </div>
 
     <div class="home_reservation">
       <div class="home_room">
         <p>객실선택</p>
-        
+
         <el-select class="home_room_select" v-model="room" placeholder="객실을 선택해주세요">
           <el-option v-for="option in optionList" :key="option.value" :label="option.label" :value="option.value">
             <div class="home_room_option">
-              <img :src="option.image">
+              <img :src="option.image" />
               <span>{{ option.label }}</span>
             </div>
           </el-option>
@@ -24,16 +24,7 @@
           <span>체크아웃</span>
         </div>
 
-        <el-date-picker
-         class="home_date_picker" 
-         :editable="false"
-         v-model="date" 
-         type="daterange" 
-         range-separator="~" 
-         format="yyyy-MM-dd"
-         start-placeholder="Start date" 
-         end-placeholder="End date">
-        </el-date-picker>
+        <el-date-picker class="home_date_picker" :editable="false" v-model="date" type="daterange" range-separator="~" format="yyyy-MM-dd" start-placeholder="Start date" end-placeholder="End date"></el-date-picker>
       </div>
 
       <div class="home_person">
@@ -60,11 +51,19 @@
         <button @click="reservationClick">예약하기</button>
       </div>
     </div>
+    <reservation v-if="reservationModal" @reservationClose="reservationClose" @reservationOk="reservationOk"></reservation>
+    <reservationComplete v-if="reservationComplete" :reservationInfo="reservationInfo"></reservationComplete>
   </div>
 </template>
 
 <script>
+  import reservation from '../components/reservation'
+  import reservationComplete from '../components/reservationComplete'
   export default {
+    components: {
+      reservation,
+      reservationComplete,
+    },
     data() {
       return {
         room: null,
@@ -72,22 +71,29 @@
           {
             image: require('@/assets/img_hotelroom_mini.png'),
             value: 'double101',
-            label: '디럭스 더블 101호'
+            label: '디럭스 더블 101호',
           },
           {
             image: require('@/assets/img_hotelroom_mini2.png'),
             value: 'double102',
-            label: '디럭스 더블 102호'
+            label: '디럭스 더블 102호',
           },
           {
             image: require('@/assets/img_hotelroom_mini3.png'),
             value: 'twin103',
-            label: '디럭스 트윈 103호'
+            label: '디럭스 트윈 103호',
           },
         ],
         date: '',
         adult: 0,
         children: 0,
+        startDate: '',
+        endDate: '',
+        price: '',
+
+        reservationComplete: false,
+        reservationModal: false,
+        reservationInfo: null,
       }
     },
     methods: {
@@ -113,13 +119,47 @@
 
         this.children--
       },
+      // 호텔예약
+      reservationOk(name, phone) {
+        if (this.room === 'double101') {
+          this.room = '디럭스 더블 101호'
+          this.price = '250,000'
+        } else if (this.room === 'double102') {
+          this.room = '디럭스 더블 102호'
+          this.price = '300,000'
+        } else {
+          this.room = '디럭스 트윈 103호'
+          this.price = '400,000'
+        }
+
+        let info = {
+          room: this.room,
+          startDate: this.startDate,
+          endDate: this.endDate,
+          adult: this.adult,
+          children: this.children,
+          price: this.price,
+          name: name,
+          phone: phone,
+        }
+
+        this.reservationInfo = info
+        this.reservationModal = false
+        this.reservationComplete = true
+      },
+      // 호텔예약닫기
+      reservationClose() {
+        this.reservationInfo = null
+        this.reservationModal = false
+      },
       reservationClick() {
         if (this.room === null) {
           alert('방을 선택해주세요')
           return
         }
 
-        if (this.date.length === 0) { // date range picker는 array로 값을 돌려줌
+        if (this.date.length === 0) {
+          // date range picker는 array로 값을 돌려줌
           alert('날짜를 선택해주세요')
           return
         }
@@ -130,8 +170,9 @@
         }
 
         // TODO: 예약창
-        let startDate = this.dateFormatChange(this.date[0])
-        let endDate = this.dateFormatChange(this.date[1])
+        this.startDate = this.dateFormatChange(this.date[0])
+        this.endDate = this.dateFormatChange(this.date[1])
+        this.reservationModal = true
       },
       dateFormatChange(date) {
         let year = date.getFullYear()
@@ -139,117 +180,118 @@
         let day = date.getDate()
 
         if (month < 10) {
-          month = "0" + month
+          month = '0' + month
         }
 
         if (day < 10) {
-          day = "0" + day
+          day = '0' + day
         }
 
         return year + '-' + month + '-' + day
-      }
-    }
+      },
+    },
   }
 </script>
 
 <style lang="scss" scoped>
-.home {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  .home_background {
-    width: 1920px;
-    height: 759px;
-    overflow: hidden;
-    img {
-      width: 100%;
-    }
-  }
-  .home_reservation {
-    position: absolute;
-    bottom: 70px;
-    left: calc(50% - 590px);
+  .home {
+    width: 100%;
+    height: 100%;
+    position: relative;
 
-    width: 1180px;
-    height: 130px;
-    background: #ffffff;
-    color: #727272;
-    font-size: 14px;
-    text-align: center;
-
-    display: flex;
-    .home_room {
-      width: 394px;
-      padding-top: 34px;
-      .home_room_select {
-        width: 350px;
-        margin-top: 16px;
+    .home_background {
+      width: 1920px;
+      height: 759px;
+      overflow: hidden;
+      img {
+        width: 100%;
       }
     }
-    .home_date {
-      width: 409px;
-      padding-top: 34px;
-      border-left: 1px solid #D3D3D3;
-      border-right: 1px solid #D3D3D3;
-      box-sizing: border-box;
-      .home_date_title {
-        padding: 0px 102px;
+    .home_reservation {
+      position: absolute;
+      bottom: 70px;
+      left: calc(50% - 590px);
+
+      width: 1180px;
+      height: 130px;
+      background: #ffffff;
+      color: #727272;
+      font-size: 14px;
+      text-align: center;
+
+      display: flex;
+      .home_room {
+        width: 394px;
+        padding-top: 34px;
+        .home_room_select {
+          width: 350px;
+          margin-top: 16px;
+        }
+      }
+      .home_date {
+        width: 409px;
+        padding-top: 34px;
+        border-left: 1px solid #d3d3d3;
+        border-right: 1px solid #d3d3d3;
+        box-sizing: border-box;
+        .home_date_title {
+          padding: 0px 102px;
+          display: flex;
+          justify-content: space-between;
+        }
+        .home_date_picker {
+          margin-top: 16px;
+        }
+      }
+      .home_person {
+        width: 235px;
+        padding: 34px 20px 0px 20px;
+        border-right: 1px solid #d3d3d3;
+        box-sizing: border-box;
         display: flex;
         justify-content: space-between;
+        .home_controller {
+          width: 90px;
+          margin-top: 22px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .home_minus {
+            width: 25px;
+            height: 25px;
+            background: url('./../assets/btn_minus.png');
+            &:active {
+              background: url('./../assets/btn_minus_off.png');
+            }
+          }
+          .home_plus {
+            width: 25px;
+            height: 25px;
+            background: url('./../assets/btn_plus.png');
+            &:active {
+              background: url('./../assets/btn_plus_off.png');
+            }
+          }
+        }
       }
-      .home_date_picker {
-        margin-top: 16px;
-      }
-    }
-    .home_person {
-      width: 235px;
-      padding: 34px 20px 0px 20px;
-      border-right: 1px solid #D3D3D3;
-      box-sizing: border-box;
-      display: flex;
-      justify-content: space-between;
-      .home_controller {
-        width: 90px;
-        margin-top: 22px;
+      .home_button {
+        width: 142px;
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        .home_minus {
-          width: 25px;
-          height: 25px;
-          background: url('./../assets/btn_minus.png');
+        justify-content: center;
+        button {
+          width: 100px;
+          height: 90px;
+          background: #143256;
+          color: #ffffff;
+          border-radius: 12px;
+          font-size: 18px;
+          font-weight: bold;
           &:active {
-            background: url('./../assets/btn_minus_off.png');
+            background: #21497a;
           }
-        }
-        .home_plus {
-          width: 25px;
-          height: 25px;
-          background: url('./../assets/btn_plus.png');
-          &:active {
-            background: url('./../assets/btn_plus_off.png');
-          }
-        }
-      }
-    }
-    .home_button {
-      width: 142px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      button {
-        width: 100px;
-        height: 90px;
-        background: #143256;
-        color: #ffffff;
-        border-radius: 12px;
-        font-size: 18px;
-        font-weight: bold;
-        &:active {
-          background: #21497a;
         }
       }
     }
   }
-}
 </style>
