@@ -21,13 +21,13 @@
     <div class="reservation_number">
       <p class="text">온라인 예약번호</p>
 
-      <input type="number" class="input" />
+      <input type="text" class="input" v-model="reservationNumber" />
     </div>
 
     <div class="reservation_name">
       <p class="text">성명</p>
 
-      <input type="text" class="input" />
+      <input type="text" class="input" v-model="name" />
     </div>
 
     <div class="reservation_retrieve">
@@ -41,6 +41,9 @@
     data() {
       return {
         room: null,
+        reservationNumber: '',
+        name: '',
+
         optionList: [
           {
             value: 'double101',
@@ -59,10 +62,10 @@
     },
     methods: {
       close() {
-        console.log('닫기')
+        this.$emit('hotelComfirmClose')
       },
       retrieve() {
-        console.log('조회하기')
+        this.$emit('hotelConfirm', this.room, this.reservationNumber, this.name)
       },
     },
   }
@@ -70,10 +73,13 @@
 
 <style lang="scss" scoped>
   .hotel_confirm {
+    top: 230px;
+    left: 690px;
     width: 540px;
     height: 620px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    border-radius: 8px;
     box-sizing: border-box;
-    border: 1px solid red;
     padding-left: 91px;
     padding-right: 44px;
     .hotel_confirm_header {
