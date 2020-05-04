@@ -101,6 +101,11 @@
         reservationInfo: null,
       }
     },
+    computed: {
+      token() {
+        return this.$cookie.get('userInfo')
+      },
+    },
     methods: {
       adultPlus() {
         this.adult++
@@ -126,7 +131,19 @@
       },
       // 호텔예약완료
       complete() {
+        let data = this.$ls.get('reservationList')
+        let list = JSON.parse(data)
+
+        if (list === null) {
+          list = []
+        }
+
+        list.push(this.reservationInfo)
+
+        this.$ls.set('reservationList', JSON.stringify(list))
+
         this.reservationComplete = false
+        this.$router.go(0);
       },
       // 호텔예약완료닫기
       close() {
@@ -142,6 +159,7 @@
         this.reservationNumber = this.reservationNum()
 
         let info = {
+          email: this.token,
           room: this.room,
           roomImage: this.roomImage,
           startDate: this.startDate,
@@ -164,6 +182,11 @@
         this.reservationModal = false
       },
       reservationClick() {
+        if (this.token === null) {
+          alert('로그인이 필요합니다')
+          return
+        }
+
         if (this.room === null) {
           alert('방을 선택해주세요')
           return
@@ -180,7 +203,6 @@
           return
         }
 
-        // TODO: 예약창
         this.startDate = this.dateFormatChange(this.date[0])
         this.endDate = this.dateFormatChange(this.date[1])
 
@@ -188,6 +210,7 @@
         this.roomCheck()
 
         let info = {
+          email: this.token,
           room: this.room,
           roomImage: this.roomImage,
           startDate: this.startDate,

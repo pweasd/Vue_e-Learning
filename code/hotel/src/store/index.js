@@ -11,7 +11,7 @@ Vue.use(VueLocalStorage, {
 export default new Vuex.Store({
   state: {
     customerList: [],
-    reservationStateList: []
+    reservationList: []
   },
   mutations: {},
   actions: {},

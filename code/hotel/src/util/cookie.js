@@ -16,9 +16,8 @@ var cookie = {
 
   set: function(name, value, options) {
     options = options || {}
-    // JWT는 토큰정보에 'Bearer 블라블라' 형식인데, 이때 띄어쓰기 공백은 encodeURIComponent 함수로 체크할때 특수문자로 변환됨
-    // 따라서 JWT 방식일 때만 유효한 코딩
-    this.cookie_arr = [encodeURIComponent(name) + '=Bearer ' + encodeURIComponent(value.replace('Bearer ', ''))]
+
+    this.cookie_arr = [encodeURIComponent(name) + '=' + value] // 원래 token 사용하지만 현재는 email로 사용하겠음
 
     //-- expires
     if (options.expires) {
