@@ -82,6 +82,7 @@
     width: 974px;
     height: 620px;
     background: #ffffff 0% 0% no-repeat padding-box;
+    border: 1px solid #D3D3D3;
     padding-left: 50px;
     padding-right: 44px;
     border-radius: 8px;

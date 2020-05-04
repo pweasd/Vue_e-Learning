@@ -19,9 +19,9 @@
           <input type="password" class="input" v-model="password" />
         </div>
 
-        <div class="save">
+        <!-- <div class="save">
           <el-checkbox v-model="checked">사용자 정보 저장</el-checkbox>
-        </div>
+        </div> -->
 
         <button class="login_btn" @click="login">로그인</button>
       </div>
@@ -47,7 +47,7 @@
       return {
         email: '',
         password: '',
-        checked: false,
+        // checked: false,
       }
     },
     methods: {
@@ -83,15 +83,8 @@
           return
         }
 
-        if (this.checked) {
-          // 사용자 정보 저장 만료일은 500일
-          this.$cookie.set('userInfo', this.email, {
-            expires_day: 500,
-            today: new Date(),
-          })
-        } else {
-          this.$cookie.set('userInfo', this.email)
-        }
+        // 로그인 정보 저장
+        this.$cookie.set('userInfo', this.email)
 
         // 로그인 성공시 창닫기
         this.$emit('close')
@@ -184,7 +177,7 @@
         .login_btn {
           width: 359px;
           height: 54px;
-          margin-top: 38px;
+          margin-top: 92px;
           background: #143256;
           font-size: 18px;
           color: #ffffff;
