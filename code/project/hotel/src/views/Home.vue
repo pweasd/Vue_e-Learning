@@ -33,9 +33,9 @@
           <p>성인</p>
           
           <div class="home_controller">
-            <button class="home_minus">-</button>
+            <button class="home_minus" @click="adultMinus"></button>
             <span>{{ adult }}</span>
-            <button class="home_plus">+</button>
+            <button class="home_plus" @click="adultPlus"></button>
           </div>
         </div>
 
@@ -43,15 +43,15 @@
           <p>어린이</p>
           
           <div class="home_controller">
-            <button class="home_minus">-</button>
+            <button class="home_minus" @click="childrenMinus"></button>
             <span>{{ children }}</span>
-            <button class="home_plus">+</button>
+            <button class="home_plus" @click="childrenPlus"></button>
           </div>
         </div>
       </div>
 
       <div class="home_button">
-        <button>예약하기</button>
+        <button @click="reservationClick">예약하기</button>
       </div>
     </div>
   </div>
@@ -82,6 +82,31 @@
         date: '',
         adult: 0,
         children: 0
+      }
+    },
+    methods: {
+      adultMinus() {
+        if (this.adult === 0) {
+          return
+        }
+
+        this.adult--
+      },
+      adultPlus() {
+        this.adult++
+      },
+      childrenMinus() {
+        if (this.children === 0) {
+          return
+        }
+
+        this.children--
+      },
+      childrenPlus() {
+        this.children++
+      },
+      reservationClick() {
+        alert('예약하기')
       }
     }
   }
@@ -148,11 +173,17 @@
           width: 25px;
           height: 25px;
           background: url('./../assets/btn_minus.png');
+          &:active {
+            background: url('./../assets/btn_minus_off.png');
+          }
         }
         .home_plus {
           width: 25px;
           height: 25px;
           background: url('./../assets/btn_plus.png');
+          &:active {
+            background: url('./../assets/btn_plus_off.png');
+          }
         }
       }
     }
