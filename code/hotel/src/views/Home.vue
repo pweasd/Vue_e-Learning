@@ -254,7 +254,7 @@
 
     .home_background {
       width: 1920px;
-      height: 759px;
+      height: 777px;
       overflow: hidden;
       img {
         width: 100%;

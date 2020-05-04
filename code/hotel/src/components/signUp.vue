@@ -14,13 +14,13 @@
     <div class="password">
       <p class="text">비밀번호</p>
 
-      <input type="text" class="input" v-model="password" />
+      <input type="password" class="input" v-model="password" />
     </div>
 
     <div class="repassword">
       <p class="text">비밀번호 확인</p>
 
-      <input type="text" class="input" v-model="rePassword" />
+      <input type="password" class="input" v-model="rePassword" />
     </div>
 
     <div class="signUp_btn">
@@ -43,7 +43,28 @@
         this.$emit('close')
       },
       signUp() {
-        // 회원가입 처리 필요
+        if (this.email.trim() === '') {
+          alert('이메일을 입력해주세요')
+          return
+        }
+
+        if (this.password.trim() === '') {
+          alert('비밀번호를 입력해주세요')
+          return
+        }
+
+        if (this.rePassword.trim() === '') {
+          alert('비밀번호 확인을 입력해주세요')
+          return
+        }
+
+        if (this.password !== this.rePassword) {
+          alert('비밀번호와 비밀번호 확인이 일치하지 않습니다')
+          return
+        }
+
+        // TODO: 회원가입 처리 필요
+
         // 회원가입 성공시 창닫기
         this.$emit('close')
       },
