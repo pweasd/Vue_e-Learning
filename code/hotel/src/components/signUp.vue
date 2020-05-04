@@ -40,10 +40,12 @@
     },
     methods: {
       close() {
-        console.log('닫기')
+        this.$emit('close')
       },
       signUp() {
-        console.log('회원가입')
+        // 회원가입 처리 필요
+        // 회원가입 성공시 창닫기
+        this.$emit('close')
       },
     },
   }
@@ -53,8 +55,9 @@
   .hotel_signup {
     width: 540px;
     height: 620px;
+    background: #ffffff;
+    border: 1px solid #D3D3D3;
     box-sizing: border-box;
-    border: 1px solid red;
     padding-left: 91px;
     padding-right: 44px;
     .hotel_signup_header {

@@ -23,9 +23,7 @@
           <el-checkbox v-model="checked">사용자 정보 저장</el-checkbox>
         </div>
 
-        <div class="login_btn">
-          <div class="login_text" @click="login">로그인</div>
-        </div>
+        <button class="login_btn" @click="login">로그인</button>
       </div>
 
       <div class="signUp">
@@ -37,9 +35,7 @@
 
         <p class="text_benefit">- 그 외 여러가지 혜택을 누리세요.</p>
 
-        <div class="signUp_btn">
-          <div class="signUp_text" @click="signUp">가입하기</div>
-        </div>
+        <button class="signUp_btn" @click="signUp">가입하기</button>
       </div>
     </div>
   </div>
@@ -54,13 +50,15 @@
     },
     methods: {
       login() {
-        console.log('로그인')
+        // 로그인 처리 필요
+        // 로그인 성공시 창닫기
+        this.$emit('close')
       },
       signUp() {
-        console.log('회원가입')
+        this.$emit('signUp')
       },
       close() {
-        console.log('닫기')
+        this.$emit('close')
       },
     },
   }
@@ -70,8 +68,9 @@
   .hotel_login {
     width: 974px;
     height: 620px;
+    background: #ffffff;
     box-sizing: border-box;
-    border: 1px solid red;
+    border: 1px solid #D3D3D3;
     padding-left: 50px;
     padding-right: 44px;
     .hotel_login_header {
@@ -140,19 +139,14 @@
           margin-top: 34px;
         }
         .login_btn {
-          width: 100%;
-          text-align: center;
+          width: 359px;
+          height: 54px;
           margin-top: 38px;
-          .login_text {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 350px;
-            height: 54px;
-            font-size: 18px;
-            color: #ffffff;
-            background: #143256;
-            cursor: pointer;
+          background: #143256;
+          font-size: 18px;
+          color: #ffffff;
+          &:active {
+            background: #21497a;
           }
         }
       }
@@ -181,20 +175,15 @@
           color: #343434;
         }
         .signUp_btn {
-          width: 350px;
-          text-align: center;
+          width: 359px;
+          height: 54px;
           margin-top: 29px;
+          background: #ffffff;
           border: 1px solid #343434;
-          .signUp_text {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 350px;
-            height: 54px;
-            font-size: 18px;
-            color: #343434;
-            background: #ffffff;
-            cursor: pointer;
+          font-size: 18px;
+          color: #343434;
+          &:active {
+            background: #f2f3f5;
           }
         }
       }
