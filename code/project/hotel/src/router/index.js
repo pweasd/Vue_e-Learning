@@ -3,16 +3,13 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Location from '@/views/Location.vue'
 
-import reservation from '../components/reservation.vue'
-import reservationComplete from '../components/reservationComplete.vue'
-
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'reservationComplete',
-    component: reservationComplete,
+    name: 'Home',
+    component: Home,
   },
   {
     path: '/location',
