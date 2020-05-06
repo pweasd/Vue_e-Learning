@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Location from '@/views/Location.vue'
 
+import reservationComplete from '../components/reservationComplete.vue'
 Vue.use(VueRouter)
 
 const routes = [
