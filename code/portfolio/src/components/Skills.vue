@@ -8,7 +8,12 @@
           <div class="skills_image">
             <img :src="skills.image" class="image" />
           </div>
-          <p class="skills_text">{{ skills.text }}</p>
+          <div class="skills_text">
+            <div class="skills_text_wrapper">
+              {{ skills.text }}
+              <div class="indicator"/>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -69,6 +74,18 @@
           .skills_list_item {
             margin-right: 5%;
 
+            &:hover {
+              transform: scale(1.05);
+              transition: 0.3s;
+
+              .indicator {
+                width: 10%;
+                height: 2px;
+                transform: scaleX(10) translateX(43%);
+                background-color: #000;
+              }
+            }
+
             .skills_image {
               display: inline-flex;
               align-items: center;
@@ -86,6 +103,10 @@
               font-size: 48px;
               text-align: center;
               font-weight: bold;
+
+              .skills_text_wrapper {
+                display: inline-block;
+              }
             }
           }
         }
