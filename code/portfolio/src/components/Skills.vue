@@ -4,7 +4,7 @@
       <p class="skills_top">Skills</p>
 
       <div class="skills_list">
-        <div v-for="skills in skillsList" :key="skills.id">
+        <div v-for="skills in skillsList" :key="skills.id" class="skills_list_item">
           <div class="skills_image">
             <img :src="skills.image" class="image" />
           </div>
@@ -34,10 +34,11 @@
     .skills {
       width: 100%;
       background: #eff0f2;
+      box-sizing: border-box;
+      padding-left: 7%;
       color: var(--default-color);
 
       .skills_container {
-        width: 1440px;
         margin: auto;
         padding-bottom: 100px;
         font-size: 72px;
@@ -62,28 +63,30 @@
 
         .skills_list {
           display: flex;
-          justify-content: space-between;
           flex-wrap: wrap;
-          width: 1000px;
           margin-top: 90px;
 
-          .skills_image {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 278px;
-            height: 278px;
-            border-radius: 50%;
-            background: #ffffff;
-          }
+          .skills_list_item {
+            margin-right: 5%;
 
-          .skills_text {
-            width: 100%;
-            height: 80px;
-            margin-top: 10px;
-            font-size: 48px;
-            text-align: center;
-            font-weight: bold;
+            .skills_image {
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              width: 278px;
+              height: 278px;
+              border-radius: 50%;
+              background: #ffffff;
+            }
+
+            .skills_text {
+              width: 100%;
+              height: 80px;
+              margin-top: 10px;
+              font-size: 48px;
+              text-align: center;
+              font-weight: bold;
+            }
           }
         }
       }

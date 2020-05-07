@@ -26,10 +26,11 @@
   @media (min-width: 801px) {
     .contact {
       width: 100%;
+      box-sizing: border-box;
+      padding-left: 7%;
       color: var(--default-color);
 
       .contact_container {
-        width: 1440px;
         margin: auto;
         padding-bottom: 100px;
         font-size: 72px;
@@ -58,7 +59,7 @@
         }
 
         .contact_area {
-          margin: 25px 0px 0px 0px;
+          margin-top: 5px;
           font-size: 32px;
           color: #232323;
         }

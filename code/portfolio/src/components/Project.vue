@@ -52,14 +52,13 @@
       color: var(--title-color);
 
       .project_container {
-        width: 1440px;
         margin: auto;
         padding-bottom: 100px;
         font-size: 72px;
         text-align: left;
 
         .project_top {
-          margin: 92px 0px 0px 0px;
+          margin: 92px 0px 0px 7%;
           display: inline-block;
           font-weight: bold;
           position: relative;
@@ -81,28 +80,30 @@
           flex-wrap: wrap;
 
           .project_item {
-            width: 688px;
+            width: 45%;
+            margin-left: 5%;
             margin-top: 100px;
             display: inline-block;
 
             img {
+              width: 90%;
               margin: 0px;
             }
 
             .project_title {
-              margin: 10px 0px 0px 0px;
+              margin: 10px 10% 0px 0px;
               font-weight: 500;
               font-size: 36px;
             }
 
             .project_content {
-              margin: 4px 0px 0px 0px;
+              margin: 4px 10% 0px 0px;
               font-size: 32px;
               word-break: break-all;
             }
 
             .project_date {
-              margin: 25px 0px 0px 0px;
+              margin: 25px 10% 0px 0px;
               font-size: 24px;
               color: #989898;
             }
