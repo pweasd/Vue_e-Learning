@@ -11,32 +11,33 @@
     </div>
 
     <span class="author">Made by Hong</span>
-    <button class="menu_icon" :class="open ? 'active' : ''" @click="open = true">
+    <button class="menu_icon" :class="open ? 'active' : ''" @click="open ? open = false : open = true">
       <div class="line line1"></div>
       <div class="line line2"></div>
       <div class="line line3"></div>
     </button>
-    <Drawer :open="open" @close="open = false"></Drawer>
+    <Drawer :menuList="menuList" :open="open" @close="open = false"></Drawer>
   </div>
 </template>
 
 <script>
 import Drawer from './Drawer'
 
-export default {
-  components: {
-    Drawer
-  },
-  data() {
-    return {
-      menuList: [ 'Home', 'About', 'Skills', 'Project', 'Contact' ],
-      open: false
-    }
-  },
-  methods: {
-    move(menu) {
-      this.$emit('move', menu)
-    }
+  export default {
+    components: {
+      Drawer
+    },
+    data() {
+      return {
+        menuList: [ 'Home', 'About', 'Skills', 'Project', 'Contact' ],
+        open: false
+      }
+    },
+    methods: {
+      move(menu) {
+        this.$emit('move', menu)
+      },
+    },
   }
 </script>
 
@@ -90,6 +91,10 @@ export default {
       font-size: 24px;
       transform: rotate(0.25turn);
     }
+    
+    .menu_icon {
+      display: none;
+    }
   }
 
   @media (max-width: 800px) {
@@ -130,17 +135,23 @@ export default {
         font-size: 14px;
         transform: rotate(0.25turn);
       }
-      
+
       .menu_icon {
+        position: absolute;
+        left: 86%;
+        top: 3%;
+        display: block;
         width: 20px;
         height: 20px;
         background-color: transparent;
+        z-index: 2;
     
         .line {
           width: 100%;
           height: 2px;
           background-color: #fff;
           margin-bottom: 8px;
+          transition: 0.3s;
           &:last-child {
             margin-bottom: 0px;
           }
@@ -153,17 +164,18 @@ export default {
         }
         .line1 {
           width: 24px;
-          transform: translateX(-8px) rotate(-45deg) translateY(14px);
+          // transform: translateX(-4px) rotate(45deg) translateY(-8px);
+          transform: translateX(-5px) rotate(45deg) translateY(0px);
         }
         .line2 {
-          // opacity: 0;
+          width: 24px;
+          // transform: translateX(-8px) rotate(-45deg) translateY(14px);
+          transform: translateX(-3px) rotate(-45deg) translateY(-3px);
         }
         .line3 {
-          width: 24px;
-          transform: translateX(-4px) rotate(45deg) translateY(-8px);
+          opacity: 0;
         }
       }
     }
   }
-}
 </style>
