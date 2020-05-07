@@ -38,90 +38,131 @@ export default {
       this.$emit('move', menu)
     }
   }
-}
 </script>
 
 <style lang="scss" scoped>
-.home_container {
-  position: relative;
-  width: 100%;
-  height: 938px;
-  background-image: url("../assets/img_bg.png");
-  background-repeat: no-repeat;
-  background-size: cover;
+  .home_container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/img_bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
 
-  .home_nav {
-    display: flex;
-    position: absolute;
-    top: 30px;
-    left: 70%;
-    button {
-      width: 80px;
-      height: 30px;
-      background-color: transparent;
-      font-size: 18px;
+    .home_nav {
+      display: flex;
+      position: absolute;
+      top: 30px;
+      left: 70%;
+      button {
+        width: 80px;
+        height: 30px;
+        background-color: transparent;
+        font-size: 18px;
+        color: var(--title-color);
+        &:hover {
+          color: #bbbbbb;
+        }
+      }
+    }
+
+    .home_title {
+      position: absolute;
+      top: 60%;
+      left: 200px;
       color: var(--title-color);
-      &:hover {
-        color: #bbbbbb;
+
+      .text {
+        font-size: 32px;
+      }
+
+      .text_bold {
+        font-size: 70px;
+        font-weight: 500;
       }
     }
-  }
 
-  .home_title {
-    position: absolute;
-    top: 60%;
-    left: 200px;
-    color: var(--title-color);
-
-    .text {
-      font-size: 32px;
-    }
-
-    .text_bold {
-      font-size: 70px;
-      font-weight: 500;
+    .author {
+      position: absolute;
+      left: 85%;
+      top: 40%;
+      color: var(--title-color);
+      font-size: 24px;
+      transform: rotate(0.25turn);
     }
   }
 
-  .author {
-    position: absolute;
-    left: 85%;
-    top: 40%;
-    color: var(--title-color);
-    font-size: 24px;
-    transform: rotate(0.25turn);
-  }
-
-  .menu_icon {
-    width: 20px;
-    height: 20px;
-    background-color: transparent;
-
-    .line {
+  @media (max-width: 800px) {
+    .home_container {
+      position: relative;
       width: 100%;
-      height: 2px;
-      background-color: #fff;
-      margin-bottom: 8px;
-      &:last-child {
-        margin-bottom: 0px;
-      }
-    }
-  }
+      height: 100%;
+      background-image: url('../assets/img_bg.png');
+      background-repeat: no-repeat;
+      background-size: cover;
 
-  .active {
-    .line {
-      margin: 0;
-    }
-    .line1 {
-      width: 24px;
-      transform: translateX(-8px) rotate(-45deg) translateY(14px);
-    }
-    .line2 {
-      // opacity: 0;
-    }
-    .line3 {
-      width: 24px;
-      transform: translateX(-4px) rotate(45deg) translateY(-8px);
+      .home_nav {
+        display: none;
+      }
+
+      .home_title {
+        position: absolute;
+        top: 60%;
+        left: 8%;
+        color: var(--title-color);
+
+        .text {
+          font-size: 24px;
+        }
+
+        .text_bold {
+          margin-top: 25px;
+          font-size: 36px;
+          font-weight: 500;
+        }
+      }
+
+      .author {
+        position: absolute;
+        left: 80%;
+        top: 20%;
+        color: var(--title-color);
+        font-size: 14px;
+        transform: rotate(0.25turn);
+      }
+      
+      .menu_icon {
+        width: 20px;
+        height: 20px;
+        background-color: transparent;
+    
+        .line {
+          width: 100%;
+          height: 2px;
+          background-color: #fff;
+          margin-bottom: 8px;
+          &:last-child {
+            margin-bottom: 0px;
+          }
+        }
+      }
+    
+      .active {
+        .line {
+          margin: 0;
+        }
+        .line1 {
+          width: 24px;
+          transform: translateX(-8px) rotate(-45deg) translateY(14px);
+        }
+        .line2 {
+          // opacity: 0;
+        }
+        .line3 {
+          width: 24px;
+          transform: translateX(-4px) rotate(45deg) translateY(-8px);
+        }
+      }
     }
   }
 }
