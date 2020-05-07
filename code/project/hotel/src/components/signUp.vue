@@ -39,7 +39,9 @@ export default {
     }
   },
   methods: {
-    close() {},
+    close() {
+      this.$emit('close')
+    },
     signUp() {
       if (this.email.trim() === '') {
         alert('이메일을 입력해주세요.')
@@ -60,6 +62,30 @@ export default {
         alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.')
         return
       }
+
+      let data = this.$ls.get('customerList')
+      let customerList = JSON.parse(data)
+
+      if (customerList !== null) {
+        let exists = customerList.filter((customer) => customer.email === this.email)
+
+        if (exists.length > 0) {
+          alert('이미 가입된 이메일입니다.')
+          return
+        }
+      } else {
+        customerList = []
+      }
+
+      customerList.push({
+        email: this.email,
+        password: this.password,
+      })
+
+      this.$ls.set('customerList', JSON.stringify(customerList))
+
+      // 회원가입 성공시 창닫기
+      this.$emit('close')
     },
   },
 }

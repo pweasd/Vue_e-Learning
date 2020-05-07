@@ -38,8 +38,29 @@ export default {
     }
   },
   methods: {
-    close() {},
-    retrieve() {},
+    close() {
+      this.$emit('hotelComfirmClose')
+    },
+    retrieve() {
+      let data = this.$ls.get('reservationList')
+      let list = JSON.parse(data)
+
+      if (list === null || list.length === 0) {
+        alert('예약저보가 없습니다.')
+        return
+      }
+
+      let exists = list.filter((info) => info.reservationNumber == this.reservationNumber && info.name == this.name)
+
+      if (exists.length === 0) {
+        alert('예약정보가 없습니다.')
+        return
+      }
+
+      this.$store.commit('setShowReservationRoom', exists[0])
+
+      this.$emit('htelConfirm')
+    },
   },
 }
 </script>

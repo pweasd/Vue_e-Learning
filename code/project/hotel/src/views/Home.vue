@@ -53,11 +53,25 @@
         <button @click="reservationClick">예약하기</button>
       </div>
     </div>
+
+    <reservation v-if="reservationModal" :roomInfo="roomInfo" @close="reservationClose" @reservationOk="reservationOk"></reservation>
+    <reservationComplete v-if="reservationComplete" @close="close" @complete="complete" :reservationInfo="reservationInfo"></reservationComplete>
   </div>
 </template>
 
 <script>
+import reservation from '../components/reservation'
+import reservationComplete from '../components/reservationComplete'
 export default {
+  components: {
+    reservation,
+    reservationComplete,
+  },
+  computed: {
+    token() {
+      return this.$cookie.get('userInfo')
+    },
+  },
   data() {
     return {
       room: '',
@@ -81,6 +95,19 @@ export default {
       date: '',
       adult: 0,
       children: 0,
+      startDate: '',
+      endDate: '',
+      roomName: '',
+      roomImage: '',
+      price: '',
+      roomDescription: '',
+      reservationNumber: '',
+
+      reservationModal: false,
+      reservationComplete: false,
+
+      roomInfo: null,
+      reservationInfo: null,
     }
   },
   methods: {
@@ -105,7 +132,140 @@ export default {
       this.children++
     },
     reservationClick() {
-      alert('예약하기')
+      if (this.token === null) {
+        alert('로그인이 필요합니다.')
+        return
+      }
+
+      if (this.room === null) {
+        alert('방을 선택해주세요.')
+        return
+      }
+
+      if (this.date.length === 0) {
+        alert('날짜를 선택해주세요.')
+        return
+      }
+
+      if (this.adult === 0 && this.children === 0) {
+        alert('인원수를 입력해주세요.')
+        return
+      }
+
+      this.startDate = this.dateFormatChange(this.date[0])
+      this.endDate = this.dateFormatChange(this.date[1])
+
+      // 객실정보
+      this.roomCheck()
+
+      let info = {
+        email: this.token,
+        room: this.roomName,
+        roomImage: this.roomImage,
+        startDate: this.startDate,
+        endDate: this.endDate,
+        adult: this.adult,
+        children: this.children,
+        price: this.price,
+        roomDescription: this.roomDescription,
+      }
+
+      this.roomInfo = info
+
+      this.reservationModal = true
+    },
+    reservationClose() {
+      this.reservationModal = false
+    },
+    reservationOk(name, phone) {
+      //객실정보
+      this.roomCheck()
+
+      // 예약번호
+      this.reservationNumber = this.reservationNum()
+
+      let info = {
+        email: this.token,
+        room: this.roomName,
+        roomImage: this.roomImage,
+        startDate: this.startDate,
+        endDate: this.endDate,
+        adult: this.adult,
+        children: this.children,
+        price: this.price,
+        name: name,
+        phone: phone,
+        reservationNumber: this.reservationNumber,
+        roomDescription: this.roomDescription,
+      }
+
+      this.reservationInfo = info
+      //예약 입력창 닫기
+      this.reservationModal = false
+      //예약완료 창 켜기
+      this.reservationComplete = true
+    },
+    complete() {
+      //호텔예약 완료
+      let data = this.$ls.get('reservationList')
+
+      let list = JSON.parse(data)
+
+      if (list === null) {
+        list = []
+      }
+
+      list.push(this.reservationInfo)
+
+      this.$ls.set('reservationList', JSON.stringify(list))
+
+      this.reservationComplete = false
+    },
+    close() {
+      //호텔 예약완료 닫기
+      this.reservationComplete = false
+    },
+    roomCheck() {
+      if (this.room === 'double101') {
+        this.roomName = '디럭스 더블 101호'
+        this.price = '250,000'
+        this.roomImage = require('@/assets/img_hotelroom_mini.png')
+        this.roomDescription = '전망 시티뷰 | 객실 면적 40~46'
+      } else if (this.room === 'double102') {
+        this.roomName = '디럭스 더블 102호'
+        this.price = '300,000'
+        this.roomImage = require('@/assets/img_hotelroom_mini2.png')
+        this.roomDescription = '오션뷰 | 객실 면전 60~66'
+      } else {
+        this.roomName = '디럭스 트윈 103호'
+        this.price = '400,000'
+        this.roomImage = require('@/assets/img_hotelroom_mini3.png')
+        this.roomDescription = '오션뷰 | 객실 면적 70~80'
+      }
+    },
+    dateFormatChange(date) {
+      let year = date.getFullYear()
+      let month = date.getMonth() + 1
+      let day = date.getDate()
+
+      if (month < 10) {
+        month = '0' + month
+      }
+
+      if (day < 10) {
+        day = '0'
+      }
+
+      return year + '-' + month + '-' + day
+    },
+    reservationNum() {
+      let result = Math.floor(Math.floor(Math.random() * 1000000) + 100000)
+
+      if (result > 1000000) {
+        result = result - 100000
+      }
+
+      return result
     },
   },
 }

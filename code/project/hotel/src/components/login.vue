@@ -16,7 +16,7 @@
 
         <div class="password">
           <p class="text">패스워드</p>
-          <input type="text" class="input" v-model="password" />
+          <input type="password" class="input" v-model="password" />
         </div>
 
         <button class="login_btn" @click="login">로그인</button>
@@ -56,9 +56,41 @@ export default {
         alert('비밀번호를 입력해주세요.')
         return
       }
+
+      let data = this.$ls.get('customerList')
+
+      if (data === null) {
+        alert('가입되지 않은 회원입니다.')
+        return
+      }
+
+      let customerList = JSON.parse(data)
+      let check = customerList.filter((customer) => customer.email === this.email)
+
+      if (check.length !== 1) {
+        alert('가입되지 않은 회원입니다.')
+        return
+      }
+
+      // 로그인
+      if (check[0].password !== this.password) {
+        alert('비밀번호 오류입니다.')
+        return
+      }
+
+      // 로그인 정보 저장
+      this.$cookie.set('userInfo', this.email)
+
+      // 로그인 성공시 창닫기
+      this.$emit('close')
+      this.$router.go(0)
     },
-    signUp() {},
-    close() {},
+    signUp() {
+      this.$emit('signUp')
+    },
+    close() {
+      this.$emit('close')
+    },
   },
 }
 </script>
@@ -182,7 +214,7 @@ export default {
       .signUp_btn {
         width: 359px;
         height: 54px;
-        margin-top: 3px;
+        margin-top: 35px;
         background: #ffffff;
         border: 1px solid #343434;
         font-size: 18px;

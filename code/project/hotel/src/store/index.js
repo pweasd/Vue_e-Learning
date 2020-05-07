@@ -1,11 +1,27 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue from 'vue'
+import Vuex from 'vuex'
+import VueLocalStorage from 'vue-localstorage'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
+
+Vue.use(VueLocalStorage, {
+  name: 'ls',
+  bind: true,
+})
+
+Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
+  state: {
+    customerList: [],
+    reservationList: [],
+    showReservationRoom: {},
+  },
+  mutations: {
+    setShowReservationRoom(state, val) {
+      state.showReservationRoom = val
+    },
+  },
   actions: {},
-  modules: {}
-});
+  modules: {},
+})
