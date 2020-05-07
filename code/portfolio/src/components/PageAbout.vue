@@ -23,10 +23,11 @@
   @media (min-width: 801px) {
     .About {
       width: 100%;
+      box-sizing: border-box;
+      padding-left: 7%;
       color: var(--default-color);
 
       .page_container {
-        width: 1440px;
         margin: auto;
         padding-bottom: 100px;
         font-size: 72px;
