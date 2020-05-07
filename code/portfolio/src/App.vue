@@ -5,6 +5,7 @@
     <Skills ref="skills"></Skills>
     <Project ref="project"></Project>
     <Contact ref="contact"></Contact>
+    <!-- <Drawer></Drawer> -->
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import PageAbout from './components/PageAbout'
 import Skills from './components/Skills'
 import Project from './components/Project'
 import Contact from './components/Contact'
+import Drawer from './components/Drawer'
 
 export default {
   name: "App",
@@ -22,7 +24,8 @@ export default {
     PageAbout,
     Skills,
     Project,
-    Contact
+    Contact,
+    Drawer
   },
   methods: {
     move(menu) {

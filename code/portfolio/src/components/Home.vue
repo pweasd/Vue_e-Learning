@@ -11,11 +11,18 @@
     </div>
 
     <span class="author">Made by Hong</span>
+
+    <!-- <Drawer></Drawer> -->
   </div>
 </template>
 
 <script>
+import Drawer from './Drawer'
+
 export default {
+  components: {
+    Drawer
+  },
   data() {
     return {
       menuList: [ 'Home', 'About', 'Skills', 'Project', 'Contact' ]
