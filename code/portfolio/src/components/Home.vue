@@ -10,8 +10,12 @@
       <p class="text_bold">Developer 홍길동 입니다.</p>
     </div>
 
-    <span class="author" @click="open = true">Made by Hong</span>
-
+    <span class="author">Made by Hong</span>
+    <button class="menu_icon" :class="open ? 'active' : ''" @click="open = true">
+      <div class="line line1"></div>
+      <div class="line line2"></div>
+      <div class="line line3"></div>
+    </button>
     <Drawer :open="open" @close="open = false"></Drawer>
   </div>
 </template>
@@ -86,6 +90,39 @@ export default {
     color: var(--title-color);
     font-size: 24px;
     transform: rotate(0.25turn);
+  }
+
+  .menu_icon {
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+
+    .line {
+      width: 100%;
+      height: 2px;
+      background-color: #fff;
+      margin-bottom: 8px;
+      &:last-child {
+        margin-bottom: 0px;
+      }
+    }
+  }
+
+  .active {
+    .line {
+      margin: 0;
+    }
+    .line1 {
+      width: 24px;
+      transform: translateX(-8px) rotate(-45deg) translateY(14px);
+    }
+    .line2 {
+      // opacity: 0;
+    }
+    .line3 {
+      width: 24px;
+      transform: translateX(-4px) rotate(45deg) translateY(-8px);
+    }
   }
 }
 </style>
