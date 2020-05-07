@@ -10,9 +10,9 @@
       <p class="text_bold">Developer 홍길동 입니다.</p>
     </div>
 
-    <span class="author">Made by Hong</span>
+    <span class="author" @click="open = true">Made by Hong</span>
 
-    <!-- <Drawer></Drawer> -->
+    <Drawer :open="open" @close="open = false"></Drawer>
   </div>
 </template>
 
@@ -25,7 +25,8 @@ export default {
   },
   data() {
     return {
-      menuList: [ 'Home', 'About', 'Skills', 'Project', 'Contact' ]
+      menuList: [ 'Home', 'About', 'Skills', 'Project', 'Contact' ],
+      open: false
     }
   },
   methods: {
